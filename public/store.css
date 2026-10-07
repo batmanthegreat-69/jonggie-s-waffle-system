@@ -671,6 +671,7 @@ dialog .sm {
 #trackBar,
 #cartBar {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: .8rem;
@@ -679,9 +680,18 @@ dialog .sm {
   border-top: 1px solid var(--line);
 }
 
+#trackBar > div:first-child {
+  flex: 1 1 220px;
+  min-width: 0;
+}
+
 #trackBar {
   background: #3c332d;
   color: #fff;
+}
+
+#trackBar .status {
+  flex: 1 1 260px;
 }
 
 #trackBar small {
