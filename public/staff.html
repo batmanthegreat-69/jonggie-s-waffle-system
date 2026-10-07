@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Staff | Jonggie's Belgian Waffle</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="staff.css">
+</head>
+
+<body class="admin-page">
+    <div class="admin-layout">
+        <aside class="admin-sidebar">
+            <a class="admin-brand" href="/">Jonggie's <span>Belgian Waffle</span></a>
+            <p class="admin-label">STAFF</p>
+            <nav class="admin-nav" aria-label="Staff navigation"><a href="#orders-section">Orders</a><a
+                    href="#menu-section">Menu</a></nav>
+            <div class="admin-sidebar-bottom"><span>Staff dashboard</span><a href="/">View storefront</a></div>
+        </aside>
+        <main class="admin-main">
+            <header class="admin-topbar"><span>Jonggie's Belgian Waffle</span><span>Staff area</span></header>
+            <section id="login" class="admin-login" hidden>
+                <div class="card">
+                    <p class="admin-label">STAFF ACCESS</p>
+                    <h1>Log in</h1>
+                    <p class="admin-muted">Sign in to manage orders and menu items.</p>
+                    <form onsubmit="login(event)"><label for="u">Username</label><input id="u"
+                            autocomplete="username"><label for="p">Password</label><input id="p" type="password"
+                            autocomplete="current-password">
+                        <p class="err" id="err"></p><button class="alt">Log in</button>
+                    </form>
+                </div>
+            </section>
+            <div id="app" hidden>
+                <div class="admin-page-heading">
+                    <div>
+                        <p class="admin-label">OPERATIONS</p>
+                        <h1>Staff dashboard</h1>
+                        <p class="admin-muted">Manage today's orders and menu.</p>
+                    </div><button class="ghost" onclick="logout()">Log out</button>
+                </div>
+                <section class="confirm-section">
+                    <div>
+                        <p class="admin-label">COUNTER</p>
+                        <h2>Confirm order code</h2>
+                        <p class="admin-muted">Confirm the customer's order before preparing it.</p>
+                    </div>
+                    <div class="row"><input id="code" placeholder="Code from the customer" maxlength="10"
+                            autocapitalize="characters"><button class="alt" onclick="confirmCode()">Confirm and take
+                            payment</button></div>
+                    <p id="cmsg" role="status"></p>
+                </section>
+                <section id="orders-section" class="admin-section">
+                    <div class="admin-section-heading">
+                        <div>
+                            <p class="admin-label">SERVICE</p>
+                            <h2>Orders</h2>
+                        </div>
+                    </div>
+                    <div class="orders-group">
+                        <div class="orders-group-heading">
+                            <div>
+                                <h3>Active orders</h3>
+                                <p class="admin-muted">Orders that still need attention.</p>
+                            </div>
+                            <span id="activeCount" class="order-count">0</span>
+                        </div>
+                        <div id="activeOrders" class="grid"></div>
+                    </div>
+                    <details class="orders-group completed-group">
+                        <summary class="orders-group-heading">
+                            <span>
+                                <strong>Completed today</strong>
+                                <small>Finished orders from today</small>
+                            </span>
+                            <span id="completedCount" class="order-count">0</span>
+                        </summary>
+                        <div id="completedOrders" class="grid"></div>
+                    </details>
+                    <details class="orders-group history-group">
+                        <summary class="orders-group-heading">
+                            <span>
+                                <strong>Order history</strong>
+                                <small>Find orders from a previous day</small>
+                            </span>
+                            <span aria-hidden="true">＋</span>
+                        </summary>
+                        <form class="history-filter" onsubmit="searchHistory(event)">
+                            <label>Date <input id="historyDate" type="date" required></label>
+                            <label>Search <input id="historySearch" type="search"
+                                    placeholder="Customer or order number"></label>
+                            <button class="alt">Search orders</button>
+                        </form>
+                        <div id="historyResults" class="grid history-results">
+                            <p class="admin-muted">Choose a date and search to view past orders.</p>
+                        </div>
+                    </details>
+                </section>
+                <section id="menu-section" class="admin-section">
+                    <div class="admin-section-heading">
+                        <div>
+                            <p class="admin-label">CATALOG</p>
+                            <h2>Menu</h2>
+                        </div>
+                    </div>
+                    <div id="menuList" class="admin-menu-table"></div>
+                    <div class="card admin-add-item">
+                        <div>
+                            <p class="admin-label">NEW ITEM</p>
+                            <h3>Add menu item</h3>
+                        </div>
+                        <div class="row">
+                            <input id="nn" placeholder="Name"><select id="nc">
+                                <option>Waffles</option>
+                                <option>Drinks</option>
+                                <option>Pizza</option>
+                                <option>Ice Cream</option>
+                                <option>Fries</option>
+                                <option>Bubble Tea</option>
+                            </select><input id="np" type="number" min="0" placeholder="Price">
+                        </div>
+                        <p class="err" id="merr"></p><button class="alt" onclick="addItem()">Add item</button>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+    <script defer src="staff.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,185 @@
+:root {
+  --ink: #1d2540;
+  --bg: #f7f9fc;
+  --butter: #ffc933;
+  --berry: #d93a5b;
+  --line: #d8deea;
+  --card: #fff;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font:
+    16px/1.5 system-ui,
+    -apple-system,
+    "Segoe UI",
+    sans-serif;
+}
+h1,
+h2,
+h3 {
+  font-family: Rockwell, "Roboto Slab", Georgia, serif;
+  margin: 0 0 0.4rem;
+}
+header {
+  background: var(--butter);
+  background-image:
+    linear-gradient(var(--ink) 2px, transparent 2px),
+    linear-gradient(90deg, var(--ink) 2px, transparent 2px);
+  background-size: 34px 34px;
+  background-position: -1px -1px;
+  padding: 2.2rem 1rem;
+}
+header div {
+  max-width: 760px;
+  margin: auto;
+}
+header h1 {
+  display: inline-block;
+  background: var(--butter);
+  padding: 0.2rem 0.7rem;
+  font-size: clamp(1.8rem, 6vw, 3rem);
+  border: 3px solid var(--ink);
+}
+header p {
+  display: block;
+  width: fit-content;
+  background: var(--butter);
+  margin: 0.6rem 0 0;
+  padding: 0.1rem 0.5rem;
+  font-weight: 600;
+}
+main {
+  max-width: 760px;
+  margin: auto;
+  padding: 1rem;
+}
+section {
+  margin: 1.6rem 0;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 0.8rem;
+}
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0.8rem;
+}
+.card small {
+  color: #5b6684;
+  display: block;
+}
+.card b {
+  display: block;
+  margin: 0.2rem 0;
+}
+.ad label {
+  display: block;
+  font-size: 0.88rem;
+}
+.sold {
+  color: var(--berry);
+  font-weight: 600;
+}
+button,
+.btn {
+  background: var(--ink);
+  color: #fff;
+  border: 0;
+  border-radius: 6px;
+  padding: 0.5rem 0.9rem;
+  font: inherit;
+  cursor: pointer;
+  margin-top: 0.4rem;
+}
+button.alt {
+  background: var(--butter);
+  color: var(--ink);
+  font-weight: 600;
+}
+button.ghost {
+  background: none;
+  color: var(--ink);
+  border: 1px solid var(--line);
+}
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 3px solid var(--berry);
+  outline-offset: 2px;
+}
+input,
+select {
+  font: inherit;
+  padding: 0.5rem;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  width: 100%;
+  margin: 0.2rem 0 0.6rem;
+}
+.row {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+.row > * {
+  flex: 1;
+  min-width: 140px;
+}
+.status {
+  display: flex;
+  gap: 0.3rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+.status span {
+  padding: 0.25rem 0.7rem;
+  border-radius: 99px;
+  border: 1px solid var(--line);
+  background: #fff;
+}
+.status .on {
+  background: var(--butter);
+  border-color: var(--ink);
+  font-weight: 700;
+}
+.err {
+  color: var(--berry);
+  min-height: 1.4rem;
+}
+.done {
+  opacity: 0.55;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+td,
+th {
+  padding: 0.4rem;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+}
+td input {
+  margin: 0;
+  padding: 0.3rem;
+  width: 90px;
+}
+[hidden] {
+  display: none !important;
+}
+@media (prefers-reduced-motion: no-preference) {
+  button {
+    transition: transform 0.1s;
+  }
+  button:active {
+    transform: scale(0.97);
+  }
+}

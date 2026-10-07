@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Jonggie's Belgian Waffle</title>
+  <link rel="stylesheet" href="store.css">
+</head>
+
+<body>
+  <div class="store-layout">
+    <aside class="sidebar">
+      <a class="brand" href="#top">Jonggie's <span>Belgian Waffle</span></a>
+      <p class="sidebar-label">SHOP</p>
+      <nav class="side-nav" aria-label="Main navigation">
+        <a class="active" href="#menu">Menu</a>
+        <button type="button" class="side-link" onclick="openD('acctDlg')">My orders <span
+            aria-hidden="true">›</span></button>
+        <a href="#find">Find us</a>
+      </nav>
+      <div class="sidebar-account">
+        <p>Ordering fresh, one waffle at a time.</p>
+        <button class="account-button" id="acctBtn" onclick="openD('acctDlg')">Log in</button>
+      </div>
+    </aside>
+    <div class="store-main">
+      <header class="store-topbar">
+        <span>Made fresh when you order</span>
+        <button class="cart-button" onclick="openD('cartDlg')">Your order <b id="cnt">0</b></button>
+      </header>
+      <main>
+        <section class="welcome" id="top">
+          <p class="overline">JONGGIE'S BELGIAN WAFFLE</p>
+          <h1>Good waffles.<br>Made fresh.</h1>
+          <p>Choose a favourite, add it to your order, and pay at the counter.</p>
+        </section>
+        <section class="menu-section" id="menu">
+          <div class="menu-heading">
+            <div>
+              <p class="overline">FROM OUR KITCHEN</p>
+              <h2>Menu</h2>
+            </div>
+          </div>
+          <div class="menu-controls">
+            <div class="pills" id="pills"></div>
+            <label class="search-box"><span>Search menu</span><input id="menuSearch" type="search"
+                placeholder="Find a waffle or drink" oninput="searchMenu()"></label>
+          </div>
+          <div id="items" class="grid"></div>
+        </section>
+        <section class="proof-section" id="proofs">
+          <p class="overline">HAPPY CUSTOMERS</p>
+          <h2>Fresh proof from the counter</h2>
+          <p class="proof-copy">Real customers share a quick photo when they enjoy their waffle.</p>
+          <div id="proofGallery" class="proof-gallery"></div>
+        </section>
+        <section class="find-section" id="find">
+          <p class="overline">VISIT US</p>
+          <h2>Find us</h2>
+          <p>Add the shop address, opening hours, and a map embed here.</p>
+        </section>
+      </main>
+      <footer>Jonggie's Belgian Waffle <span>·</span> Prices in Philippine pesos</footer>
+    </div>
+  </div>
+
+  <dialog id="cartDlg" class="drawer">
+    <div class="dh">
+      <h2 style="margin:0">Your order</h2><button class="ghost sm"
+        onclick="this.closest('dialog').close()">Close</button>
+    </div>
+    <div id="cart"></div>
+    <label for="name">Your name</label><input id="name" maxlength="60" autocomplete="name">
+    <label for="table">Table number</label><input id="table" maxlength="10" inputmode="numeric">
+    <label for="cash">Cash you will pay with (optional)</label><input id="cash" type="number" min="0" step="any"
+      inputmode="decimal" oninput="updateChange()">
+    <p id="change" aria-live="polite"></p>
+    <p class="err" id="err"></p><button class="alt" style="width:100%" onclick="place()">Place order</button>
+  </dialog>
+
+  <dialog id="acctDlg">
+    <div class="dh">
+      <h2 style="margin:0">Account</h2><button class="ghost sm" onclick="this.closest('dialog').close()">Close</button>
+    </div>
+    <div id="acct"></div>
+  </dialog>
+  <dialog id="addDlg">
+    <div class="dh">
+      <h2 style="margin:0" id="addTitle"></h2><button class="ghost sm"
+        onclick="this.closest('dialog').close()">Close</button>
+    </div>
+    <p>Would you like to add anything extra?</p>
+    <div id="addList"></div>
+    <label for="addQty">How many?</label><input id="addQty" type="number" min="1" max="20" value="1">
+    <div style="display:flex;gap:.5rem;flex-wrap:wrap"><button class="alt" onclick="confirmAdd(true)">Add to
+        order</button><button class="ghost" onclick="confirmAdd(false)">No extras, just add it</button></div>
+  </dialog>
+  <dialog id="codeDlg">
+    <h2 style="margin-top:0">Order placed</h2>
+    <p>Show this code to the cashier to confirm and pay. We start cooking once the cashier confirms it.</p>
+    <p id="bigCode" class="code"></p>
+    <p id="codeInfo"></p>
+    <button class="alt" style="width:100%" onclick="$('#codeDlg').close()">Got it</button>
+  </dialog>
+  <dialog id="proofDlg">
+    <div class="dh">
+      <h2 style="margin:0">Share your waffle photo</h2>
+      <button class="ghost sm" type="button" onclick="$('#proofDlg').close()">Close</button>
+    </div>
+    <p>Enjoyed it? Take a photo and share it with the next customer. Uploaded photos are public in the customer gallery, so only share a photo you have permission to post.</p>
+    <label class="upload-proof">
+      <input id="proofInput" type="file" accept="image/jpeg,image/png,image/webp" capture="environment">
+      <span>Take or choose a photo</span>
+    </label>
+    <input id="proofCaption" type="text" maxlength="120" placeholder="Optional note">
+    <button class="alt" id="proofSubmit" type="button">Upload proof photo</button>
+    <p class="err" id="proofError" role="status"></p>
+  </dialog>
+  <div id="dock">
+    <div id="trackBar" hidden></div>
+    <div id="cartBar" hidden></div>
+  </div>
+  <div id="toast" hidden></div>
+  <script defer src="store.js"></script>
+</body>
+
+</html>
